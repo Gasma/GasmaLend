@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\gasmaTools.Abstraction\gasmaTools.Abstraction.csproj" />
+    <ProjectReference Include="..\gasmaTools.Application\gasmaTools.Application.csproj" />
+    <ProjectReference Include="..\gasmaTools.Domain.Abstraction\gasmaTools.Abstraction.Domain.csproj" />
+    <ProjectReference Include="..\gasmaTools.Infra.CrossCutting.Bus\gasmaTools.Infra.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\gasmaTools.Infra.CrossCutting.Logger\gasmaTools.Infra.CrossCutting.Logger.csproj" />
+    <ProjectReference Include="..\gasmaTools.Infra.Data\gasmaTools.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>

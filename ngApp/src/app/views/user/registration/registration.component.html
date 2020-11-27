@@ -1,0 +1,50 @@
+    <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmitRegistration()">
+      <div class="form-group">
+        <label for="UserName">Usuário</label>
+        <input class="form-control" formControlName="UserName">
+        <label class="text-danger"
+          *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">Nome é
+          obrigatorio</label>
+      </div>
+      <div class="form-group">
+        <label for="Email">Email</label>
+        <input class="form-control" formControlName="Email">
+        <label class="text-danger"
+          *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.required">Email
+          Inválido</label>
+      </div>
+      <div class="form-group">
+        <label for="FullName">Nome Completo</label>
+        <input class="form-control" formControlName="FullName">
+      </div>
+      <div formGroupName="Passwords">
+        <div class="form-group">
+          <label for="Password">Senha</label>
+          <input class="form-control" formControlName="Password" type="password">
+          <label class="text-danger"
+            *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Senha
+            deve ter no minimo 8 digitos</label>
+          <label class="text-danger"
+            *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.maxlength">Senha
+            deve ter no maximo 8 digitos</label>
+          <label class="text-danger"
+            *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Senha
+            é obrigatoria</label>
+        </div>
+        <div class="form-group">
+          <label for="ConfirmPassword">Confirmação de senha</label>
+          <input class="form-control" formControlName="ConfirmPassword" type="password">
+          <label class="text-danger"
+            *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">Confirmação
+            é obrigatoria</label>
+          <label class="text-danger"
+            *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Diferente
+            da senha digitada</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-8 offset-md-2">
+          <button type="submit" class="btn btn-lg btn-block btn-primary" >Registrar</button>
+        </div>
+      </div>
+    </form>

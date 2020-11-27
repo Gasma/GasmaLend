@@ -1,0 +1,31 @@
+<h1 mat-dialog-title><strong>{{action}}</strong> um jogo</h1>
+<div mat-dialog-content *ngIf="action != 'Delete'; else elseTemplate">
+  <mat-form-field class="full-width">
+    <input placeholder="{{action}} Nome" matInput [(ngModel)]="local_data.name">
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input placeholder="{{action}} Descrição" matInput [(ngModel)]="local_data.description">
+  </mat-form-field>
+  <div *ngIf="action == 'lend'">
+  <mat-form-field class="full-width">
+    <input type="text"
+           placeholder="Selecione um amigo"
+           aria-label="Number"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+</div>
+<ng-template #elseTemplate>
+  Tem certeza que quer apagar <b>{{local_data.name}}</b>?
+</ng-template>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">{{action}}</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>
