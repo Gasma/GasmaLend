@@ -40,3 +40,4 @@
 /api/test/gasmaTools.Test.Integration/obj
 /api/test/gasmaTools.Test.Shared/bin/Debug/netcoreapp3.1
 /api/test/gasmaTools.Test.Shared/obj
+/api/.vs
