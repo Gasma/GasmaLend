@@ -35,8 +35,8 @@ namespace gasmaTools.Api
         [HttpPost]
         public IActionResult Post([FromServices] IGameService gameService, [FromBody] GameViewModel game)
         {
-            gameService.Insert(game);
-            return Result(game);
+            var result = gameService.Insert(game);
+            return Result(result);
         }
 
         [HttpPut]

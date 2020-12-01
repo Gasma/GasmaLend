@@ -8,7 +8,7 @@ namespace gasmaTools.Application.Interfaces
     {
         GameViewModel GetById(Guid id);
         IEnumerable<GameViewModel> GetAll();
-        void Insert(GameViewModel gameViewModel);
+        GameViewModel Insert(GameViewModel gameViewModel);
         void Update(GameViewModel gameViewModel);
         void Activate(Guid id);
         void Inactivate(Guid id);

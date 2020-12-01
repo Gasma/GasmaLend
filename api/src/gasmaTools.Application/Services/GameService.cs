@@ -41,6 +41,7 @@ namespace gasmaTools.Application.Services
 
         public GameViewModel GetById(Guid id)
         {
+            var result = gameReadRepository.GetById(id);
             return mapper.Map<GameViewModel>(gameReadRepository.GetById(id));
         }
 
@@ -56,10 +57,11 @@ namespace gasmaTools.Application.Services
             mediator.SendCommandAsync(command);
         }
 
-        public void Insert(GameViewModel gameViewModel)
+        public GameViewModel Insert(GameViewModel gameViewModel)
         {
             var command = mapper.Map<InsertGameCommand>(gameViewModel);
             mediator.SendCommandAsync(command);
+            return mapper.Map<GameViewModel>(command);
         }
 
         public void Lend(Guid id, Guid personId)

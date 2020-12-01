@@ -8,7 +8,7 @@ namespace gasmaTools.Application.Interfaces
     {
         PersonViewModel GetById(Guid id);
         IEnumerable<PersonViewModel> GetAll();
-        void Insert(PersonViewModel personViewModel);
+        PersonViewModel Insert(PersonViewModel personViewModel);
         void Update(PersonViewModel personViewModel);
         void Activate(Guid id);
         void Inactivate(Guid id);

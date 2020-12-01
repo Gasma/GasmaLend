@@ -52,6 +52,7 @@ namespace gasmaTools.Domain.CommandHandlers
 
             if (Commit())
             {
+                command.SetId(game.Id);
                 mediator.RaiseEventAsync(new InsertGameEvent(game.Name, game.Description));
             }
 

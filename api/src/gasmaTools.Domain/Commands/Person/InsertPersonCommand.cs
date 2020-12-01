@@ -1,4 +1,5 @@
 ﻿using gasmaTools.Domain.Validations.Person;
+using System;
 
 namespace gasmaTools.Domain.Commands.Person
 {
@@ -9,6 +10,11 @@ namespace gasmaTools.Domain.Commands.Person
             Name = name;
             Address = address;
             Age = age;
+        }
+
+        public void SetId(Guid id)
+        {
+            Id = id;
         }
 
         public override bool IsValid()

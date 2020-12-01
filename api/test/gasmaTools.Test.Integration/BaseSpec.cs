@@ -1,10 +1,15 @@
+using FluentAssertions;
 using gasmaTools.Abstraction.Data;
+using gasmaTools.Api.Base;
+using gasmaTools.Infra.CrossCutting.Ioc.Extensions;
 using gasmaTools.Test.Shared;
+using MediatR;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using Xunit;
+using System.Net;
 
 namespace gasmaTools.Test.Integration
 {
@@ -22,12 +27,12 @@ namespace gasmaTools.Test.Integration
         public virtual IServiceProvider BuildServiceProvider()
         {
             var builder = new ConfigurationBuilder()
-                .AddJsonFile(this.appsettingsJson, optional: true, reloadOnChange: true);
+                .AddJsonFile(this.appsettingsJson);
 
             var configuration = builder.Build();
-
+            var teste = configuration.GetSection("ConnectionStrings:DefaultConnection").Value;
             var services = new ServiceCollection();
-            services.AddRepository(new ContextOptionsBuilder(configuration.GetSection("ConnectionStrings:DefaultConnection").Value, "MarcaSaude.GestaoRede.Infra.Data.Migrations"));
+            services.AddRepository(new ContextOptionsBuilder(configuration.GetSection("ConnectionStrings:DefaultConnection").Value, "gasmaTools.Infra.Data.Migrations"));
             services
                 .AddLogging()
                 .AddBus(configuration)
@@ -36,11 +41,17 @@ namespace gasmaTools.Test.Integration
                 .AddCommands(configuration)
                 .AddNotifications(configuration)
                 .AddAppServices(configuration);
-            services.AddSingleton<IHostingEnvironment>(new HostingEnvironment());
+            services.AddSingleton<IWebHostEnvironment>(new HostingEnvironment());
             services.AddMediatR(typeof(BaseSpec));
             services.AddSingleton(AutoMapperConfig.Initialize());
 
             return services.BuildServiceProvider();
+        }
+
+        protected Response<TPayload> GetResponse<TPayload>(IActionResult result) where TPayload : class
+        {
+            var r = result as JsonResult;
+            return r.Value as Response<TPayload>;
         }
     }
 }

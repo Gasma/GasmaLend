@@ -35,8 +35,8 @@ namespace gasmaTools.Api
         [HttpPost]
         public IActionResult Post([FromServices] IPersonService personService, [FromBody] PersonViewModel person)
         {
-            personService.Insert(person);
-            return Result(person);
+            var result = personService.Insert(person);
+            return Result(result);
         }
 
         [HttpPut]

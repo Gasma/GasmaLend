@@ -49,6 +49,7 @@ namespace gasmaTools.Domain.CommandHandlers
 
             if (Commit())
             {
+                command.SetId(person.Id);
                 mediator.RaiseEventAsync(new InsertPersonEvent(person.Id, person.Name, person.Address, person.Age));
             }
 

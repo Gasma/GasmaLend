@@ -1,4 +1,5 @@
 ﻿using gasmaTools.Domain.Validations.Game;
+using System;
 
 namespace gasmaTools.Domain.Commands.Game
 {
@@ -8,6 +9,11 @@ namespace gasmaTools.Domain.Commands.Game
         {
             Name = name;
             Description = description;
+        }
+
+        public void SetId(Guid id)
+        {
+            Id = id;
         }
 
         public override bool IsValid()

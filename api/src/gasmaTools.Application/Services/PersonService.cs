@@ -50,10 +50,11 @@ namespace gasmaTools.Application.Services
             mediator.SendCommandAsync(command);
         }
 
-        public void Insert(PersonViewModel gameViewModel)
+        public PersonViewModel Insert(PersonViewModel gameViewModel)
         {
             var command = mapper.Map<InsertPersonCommand>(gameViewModel);
             mediator.SendCommandAsync(command);
+            return mapper.Map<PersonViewModel>(command);
         }
 
         public void Update(PersonViewModel gameViewModel)
