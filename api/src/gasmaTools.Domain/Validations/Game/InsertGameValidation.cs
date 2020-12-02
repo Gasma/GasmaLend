@@ -7,6 +7,7 @@ namespace gasmaTools.Domain.Validations.Game
         public InsertGameValidation()
         {
             ValidateName();
+            ValidateDescription();
         }
     }
 }

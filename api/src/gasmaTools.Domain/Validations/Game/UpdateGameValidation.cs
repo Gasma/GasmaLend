@@ -8,6 +8,7 @@ namespace gasmaTools.Domain.Validations.Game
         {
             ValidateId();
             ValidateName();
+            ValidateDescription();
         }
     }
 }

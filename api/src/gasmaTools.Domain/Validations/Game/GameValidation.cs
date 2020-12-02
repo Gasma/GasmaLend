@@ -24,6 +24,13 @@ namespace gasmaTools.Domain.Validations.Game
             RuleFor(game => game.Name)
                 .NotEmpty().WithMessage("O nome do jogo não pode estar em branco.")
                 .Length(2, 100).WithMessage("O nome do jogo deve conter entre 2 a 100 caracteres.");
+        }        
+        
+        protected void ValidateDescription()
+        {
+            RuleFor(game => game.Description)
+                .NotEmpty().WithMessage("A descrição do jogo não pode estar em branco.")
+                .Length(0, 255).WithMessage("A descrição do jogo deve conter no maximo 255 caracteres.");
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
 using System;
 
 namespace gasmaTools.Abstraction.Data
@@ -24,11 +24,11 @@ namespace gasmaTools.Abstraction.Data
 
         public Action<DbContextOptionsBuilder> Builder()
         {
-            Action<SqlServerDbContextOptionsBuilder> sqlOptions = null;
+            Action<NpgsqlDbContextOptionsBuilder> sqlOptions = null;
             if (!string.IsNullOrEmpty(this.MigrationsAssemblyName))
                 sqlOptions = (options) => options.MigrationsAssembly(this.MigrationsAssemblyName);
 
-            return options => options.UseSqlServer(ConnectionString, sqlOptions);
+            return options => options.UseNpgsql(ConnectionString, sqlOptions);
         }
     }
 }
