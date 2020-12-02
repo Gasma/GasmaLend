@@ -19,7 +19,7 @@ namespace gasmaTools.Test.Integration.Controllers
 
         }
 
-        [Fact(DisplayName = "MustSaveGame should return Ok if everything goes well")]
+        [Fact(DisplayName = "Must save game should return Ok if everything goes well")]
         public void MustSaveGame()
         {
             //Given
@@ -27,7 +27,7 @@ namespace gasmaTools.Test.Integration.Controllers
             var mediator = serviceProvider.GetService<IMediatorHandler>();
             var gameService = serviceProvider.GetService<IGameService>();
             var controller = new GameController(domainNotification, mediator);
-            var gameViewModel = FixtureCreateObject.CriarViewModel<GameViewModel>();
+            var gameViewModel = FixtureCreateObject.ViewModelGenerator<GameViewModel>();
 
             //When
             var result = controller.Post(gameService, gameViewModel);
@@ -38,7 +38,7 @@ namespace gasmaTools.Test.Integration.Controllers
             response.Data.Id.Should().NotBe(Guid.Empty);
         }        
         
-        [Fact(DisplayName = "MustSaveGame should return Ok if everything goes well")]
+        [Fact(DisplayName = "Must save, get and update a Game should return Ok if everything goes well")]
         public void MustSaveGetUpdateGame()
         {
             //Given
@@ -46,7 +46,7 @@ namespace gasmaTools.Test.Integration.Controllers
             var mediator = serviceProvider.GetService<IMediatorHandler>();
             var gameService = serviceProvider.GetService<IGameService>();
             var controller = new GameController(domainNotification, mediator);
-            var gameViewModel = FixtureCreateObject.CriarViewModel<GameViewModel>();
+            var gameViewModel = FixtureCreateObject.ViewModelGenerator<GameViewModel>();
 
             //When
             //Save

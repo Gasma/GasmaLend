@@ -4,7 +4,6 @@
 
 /api/.vs/gasmaTools
 /api/src/gasmaTools.Api/obj
-/api/src/gasmaTools.Api/Properties/launchSettings.json
 /api/src/gasmaTools.Application/obj
 /api/src/gasmaTools.Domain/obj
 /api/src/gasmaTools.Infra.CrossCutting.Bus/obj
@@ -40,4 +39,6 @@
 /api/test/gasmaTools.Test.Integration/obj
 /api/test/gasmaTools.Test.Shared/bin/Debug/netcoreapp3.1
 /api/test/gasmaTools.Test.Shared/obj
+/api/test/gasmaTools.Test.Unit/bin/Debug/netcoreapp3.1
+/api/test/gasmaTools.Test.Unit/obj
 /api/.vs
