@@ -1,0 +1,57 @@
+version: '3.3'
+services:
+
+  postgresdb:
+    image: postgres:12.4
+    container_name: postgresdb
+    ports:
+      - "5432"
+    environment:
+      POSTGRES_USER: userGasma
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: GasmaDb
+    networks:
+      - gasma-net
+    volumes:
+      - postgresdb-data:/var/lib/postgresql/data
+    restart: always
+
+  gasma-api:
+    container_name: gasma-api
+    image: gasma-api
+    build:
+      context: ../api/src
+      dockerfile: ./gasmaTools.Api/Dockerfile
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://*:5000
+    ports:
+      - "7001:5000"
+    depends_on:
+      - postgresdb
+    networks:
+      - gasma-net   
+
+  web-app:
+    container_name: web-app
+    image: web-app
+    build:
+      context: ../ngApp
+      dockerfile: ./Dockerfile
+    restart: always    
+    ports:
+      - "80:80"
+    depends_on:
+      - gasma-api
+    networks:
+      - gasma-net
+
+volumes:
+  postgresdb-data:
+
+networks:
+  gasma-net:
+    driver: bridge      
+
+  
